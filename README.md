@@ -7,8 +7,8 @@ To run simulations:
 
 buildplanet4.py, nextorbit.py and coeffstandard.py are function files used to simulate the planetary systems.
 
-Some python files are provided for plotting the data e.g. newplots1.py. The main popsyn.py file itself can be modified for planet profile simulations.
+Some python files are provided for plotting the data e.g. newplots1.py. The main popsyn.py file itself can be modified for planet profile simulations. You can also use any files from your side for plotting.
 
 The statistics.py file provides the percent wise distribution of planetary systems by number of planets assuming the total number of simulations is 1000. If this number is changed, tweak the file accordingly. disks.py plots the different disk mass distributions provided in the paper.
 
-diskplanetcomp.py is teh file that outputs Figure 1 in the paper.
+diskplanetcomp.py is the file that outputs a figure that compares simulated disks, observed disks and observed exoplanets.
