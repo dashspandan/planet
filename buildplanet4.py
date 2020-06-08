@@ -17,7 +17,7 @@ def buildplanet(f, o, m_dot_2D_coeff, m_dot_3D_coeff, y, a_dot_coeff, next_orbit
 
 	e = next_orbit
 
-	file1 = open("rand_lupus_1000_m.txt","a")
+	file1 = open("test.txt","a")
 	
 	w = 0. #initiate internal time (time in planet's frame of reference)
 
@@ -135,13 +135,22 @@ def buildplanet(f, o, m_dot_2D_coeff, m_dot_3D_coeff, y, a_dot_coeff, next_orbit
 	file1.write(str(m1)+','+str(b[-1])+','+str(Mp[-1])+','+str(0.1*Mp[-1])+','+str(count)+','+str(m_star)+','+str(m_disk)+'\n')
 
 	plt.scatter(b[-1],Mp[-1],color = 'blue')
+	#plt.plot(b,Mp, label = str(count))
 	plt.xscale('log')
 	plt.yscale('log')
+	#plt.ylim(1e-4, 2.)
+	plt.xlim(0.005, 1.)
+	#plt.xlim(0.01, 0.2)
 	plt.title('Distribution of planets', size = 22)
+	#plt.title('Evolution of planets', size = 12)
 	plt.xlabel('Semi-major axis in AU', size = 16)
 	plt.ylabel('Mass of planet in $M_{\oplus}$', size = 16)
-	plt.xlim(0.005, 1.)
+	#plt.xlabel('Semi-major axis in AU', size = 8)
+	#plt.ylabel('Mass of planet in $M_{\oplus}$', size = 8)
+	
 	plt.tick_params(labelsize=14)
+	#plt.tick_params(axis = 'both', labelsize = 6)
+	#plt.legend(prop={'size': 4}, loc = 3)
 	
 	count = count + 1
 	

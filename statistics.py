@@ -11,7 +11,7 @@ def freq(value, some_list):
 			freq = freq + 1
 	return freq
 
-x = np.loadtxt('rand_lupus_1000_m.txt', delimiter=',')
+x = np.loadtxt('ormel_massive_1000_1.txt', delimiter=',')
 
 icemass = x[:,0]
 final_sa = x[:,1]
@@ -22,7 +22,7 @@ star_mass = x[:,5]
 disk_mass = x[:,6]
 
 print 'Number of planets formed is %d.'%(len(count))
-print 'Average planet mass is %.3f.'%(np.mean(final_mass))
+print 'Average planet mass is %.4f.'%(np.mean(final_mass))
 
 bins = np.arange(min(count), max(count)+1, 1)
 print bins
