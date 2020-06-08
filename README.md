@@ -2,7 +2,7 @@ The popsyn.py file is the main file.
 
 To run simulations: 
 
-1. Edit the name of the text file in buildplanet4.py. This is the file that will have all planetary system information after simulations.
+1. Edit the name of the text file in buildplanet4.py. This is the file that will have all planetary system information after simulations (includes mass of planet while crossing iceline, final semi-major axis, final mass, mass of gas accreted, mass of star, mass of disk and ordinal number of planet).
 2. Run the popsyn.py file after changing any input parameters you need to.
 
 buildplanet4.py, nextorbit.py and coeffstandard.py are function files used to simulate the planetary systems.
