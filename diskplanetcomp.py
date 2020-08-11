@@ -18,7 +18,7 @@ b = [] #List of gas disk masses
 c = [] #List of dust disk masses
 d = [] #Star mass list for dust disk
 
-mass_list = np.linspace(0.08, 0.2, 1000).tolist()
+mass_list = np.linspace(0.09, 0.2, 1000).tolist()
 gd = np.linspace(10, 1000, 500) #gas to dust ratio
 
 while len(a) <= 1000:
@@ -33,11 +33,14 @@ while len(d) <= 1000:
 	m_disk = np.power(10., 1.8*np.log10(rn.choice(mass_list))+(0.9)) #In earth masses
 	c.append(m_disk)
 
+liny = [317.8 for i in mass_list]
+
 fig, ax = plt.subplots()
 #fig.subplots_adjust(left=.15, bottom=.18, right=.95, top=.85)
-ax.scatter(a,b,color = 'grey', s = 2, label = 'Gas disk masses')
-ax.scatter(a,c,color = 'peru', s = 2, label = 'Dust disk masses')
-ax.scatter(x,y,color = 'darkblue', marker = 'D', s = 5, label = 'Observed dust disks')
+ax.scatter(a,b,color = 'grey', s = 2, label = 'Simulated Gas disk masses')
+ax.scatter(a,c,color = 'peru', s = 2, label = 'Simulated Dust disk masses')
+ax.scatter(x,y,color = 'darkblue', marker = 'D', s = 5, label = 'Maximum observed dust disk masses')
+ax.plot(mass_list, liny, linestyle = 'dashed', label = 'Upper limit for most observed Gas disk masses')
 ax.set_xscale('log')
 ax.set_yscale('log')
 ax.set_xlim(7e-2, 3e-1)
@@ -48,6 +51,22 @@ ax.set_title('Planet mass-Disk mass comparison', size = 20)
 ax.set_xlabel('Mass of star in $M_{\odot}$', size = 14)
 ax.set_ylabel('Mass of planets or disks in $M_{\oplus}$', size = 14)
 #ax.tick_params(axis = 'both', labelsize = 6)
+
+ax.legend(prop={'size': 6}, loc = 4)
+
+fig.savefig('diskplanetcomp1.pdf')
+fig.clf()
+
+fig, ax = plt.subplots()
+ax.set_xscale('log')
+ax.set_yscale('log')
+ax.set_xlim(7e-2, 3e-1)
+ax.set_ylim(1e-2, 1e3)
+#ax.set_xticks([7e-2, 8e-2, 9e-2, 1e-1, 2e-1, 3e-1])
+ax.set_yticks([1e-2, 1e-1, 1e0, 1e1, 1e2, 1e3])
+#ax.set_title('Planet mass-Disk mass comparison', size = 20)
+ax.set_xlabel('Mass of star in $M_{\odot}$', size = 14)
+ax.set_ylabel('Mass of planets or disks in $M_{\oplus}$', size = 14)
 
 #TRAPPIST-1
 trm_t = [1.02, 1.16, 0.3, 0.77, 0.93, 1.15, 0.33]
@@ -152,6 +171,6 @@ ax.errorbar(trms_32, trm_32, yerr = trmerr_32, color = 'darkorange', fmt='o', la
 ax.errorbar(trms_ro, trm_ro, yerr = trmerr_ro, color = 'orchid', fmt='o', label = 'Ross 128b', ms = 3, elinewidth = 0.5)
 ax.errorbar(trms_tee, trm_tee, yerr = trmerr_tee, color = 'gold', fmt='o', label = 'Teegarden star system', ms = 3, elinewidth = 0.5)
 
-ax.legend(prop={'size': 6}, loc = 1)
+ax.legend(prop={'size': 8}, loc = 1)
 
-fig.savefig('diskplanetcomp1.pdf')
+fig.savefig('diskplanetcomp2.pdf')

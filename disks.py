@@ -1,3 +1,5 @@
+#Reference from https://stackoverflow.com/questions/27872723/ and https://stackoverflow.com/questions/40409977
+
 import numpy as np
 import matplotlib as mpl
 mpl.use('pdf')
@@ -37,19 +39,19 @@ while len(m_disk_lupus) < 1000:
 	m1 = np.power(10., 1.8*np.log10(rn.choice(m_star_list))+(0.9+np.log10(rn.choice(gd))+np.log10(3e-6)))
 	m_disk_lupus.append(m1)
 
-m_disk_actual = []
+#m_disk_actual = []
 
-with open('disks.csv','r') as csvfile:
-    plots = csv.reader(csvfile, delimiter=',')
-    for row in plots:
-	if float(row[0]) >= 0.09 and float(row[0]) <= 0.2:
-		m_disk_actual.append(float(row[1]))
-	else:
-		pass
+#with open('disks.csv','r') as csvfile:
+#    plots = csv.reader(csvfile, delimiter=',')
+#    for row in plots:
+#	if float(row[0]) >= 0.09 and float(row[0]) <= 0.2:
+#		m_disk_actual.append(float(row[1]))
+#	else:
+#		pass
 
-print len(m_disk_actual)
+#print len(m_disk_actual)
 
-bins = np.logspace(np.log10(1.e-6),np.log10(1.e-1), 25)
+bins = np.logspace(np.log10(1.e-6),np.log10(1.e-1), 40)
 
 width = 3.487
 height = width / 1.618
@@ -57,41 +59,53 @@ height = width / 1.618
 fig, ax = plt.subplots()
 fig.subplots_adjust(left=.14, bottom=.17, right=.95, top=.85)
 
-plt.hist(m_disk_ormel1, bins = bins, label = '3-5% of star mass (Ormel)', histtype = 'step', edgecolor = 'maroon') # Ormel 2017
+n,x,bars = plt.hist(m_disk_ormel1, bins = bins, label = '3-5% of star mass (Ormel)', histtype = 'step', edgecolor = 'maroon') # Ormel 2017
+bin_centers = 0.5*(x[1:]+x[:-1])
+plt.plot(bin_centers, n, color = 'maroon', label = '3-5% of star mass (Ormel)')
 plt.xlabel('Mass of Disks in M$_{\odot}$', size = 8)
 plt.ylabel('Frequency', size = 8)
 plt.title('Number distribution of Disks', size = 10)
 plt.xscale('log')
 plt.legend(loc = 'upper left', prop={'size': 4})
 plt.tick_params(labelsize = 6)
+t = [b.remove() for b in bars]
 fig.set_size_inches(width, height)
 
-plt.hist(m_disk_ormel2, bins = bins, label = '3-8% of star mass', histtype = 'step', edgecolor = 'grey') # Ormel 2017
+n,x,bars = plt.hist(m_disk_ormel2, bins = bins, label = '3-8% of star mass', histtype = 'step', edgecolor = 'darkgoldenrod') # Ormel 2017
+bin_centers = 0.5*(x[1:]+x[:-1])
+plt.plot(bin_centers, n, color = 'darkgoldenrod', label = '3-8% of star mass')
 plt.xlabel('Mass of Disks in M$_{\odot}$', size = 8)
 plt.ylabel('Frequency', size = 8)
 plt.title('Number distribution of Disks', size = 10)
 plt.xscale('log')
 plt.legend(loc = 'upper left', prop={'size': 4})
 plt.tick_params(labelsize = 6)
+t = [b.remove() for b in bars]
 fig.set_size_inches(width, height)
 
-plt.hist(m_disk_ormel3, bins = bins, label = '3-10% of star mass', histtype = 'step', edgecolor = 'blue') # Ormel 2017
+n,x,bars = plt.hist(m_disk_ormel3, bins = bins, label = '3-10% of star mass', histtype = 'step', edgecolor = 'blue') # Ormel 2017
+bin_centers = 0.5*(x[1:]+x[:-1])
+plt.plot(bin_centers, n, color = 'blue', label = '3-10% of star mass')
 plt.xlabel('Mass of Disks in M$_{\odot}$', size = 8)
 plt.ylabel('Frequency', size = 8)
 plt.title('Number distribution of Disks', size = 10)
 plt.xscale('log')
 plt.legend(loc = 'upper left', prop={'size': 4})
 plt.tick_params(labelsize = 6)
+t = [b.remove() for b in bars]
 fig.set_size_inches(width, height)
 
 
-plt.hist(m_disk_lupus, bins = bins, label = 'Lupus', histtype = 'step', edgecolor = 'green') # Lupus survey
+n,x,bars = plt.hist(m_disk_lupus, bins = bins, histtype = 'step', edgecolor = 'green') # Lupus survey
+bin_centers = 0.5*(x[1:]+x[:-1])
+plt.plot(bin_centers, n, color = 'green', label = 'Lupus')
 plt.xlabel('Mass of Disks in M$_{\odot}$', size = 8)
 plt.ylabel('Frequency', size = 8)
 plt.title('Number distribution of Disks', size = 10)
 plt.xscale('log')
 plt.legend(loc = 'upper left', prop={'size': 4})
 plt.tick_params(labelsize = 6)
+t = [b.remove() for b in bars]
 fig.set_size_inches(width, height)
 
 #plt.show()
