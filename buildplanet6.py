@@ -7,7 +7,7 @@ from nextorbit import findnextorbit
 
 def buildplanet(f, o, m_dot_2D_coeff, m_dot_3D_coeff, y, a_dot_coeff, next_orbit, disk_edge, iceline, m_star, m_disk, count, tend): #f is total time, o is disk lifetime, coeffs are calculated growth nd migration coeffs, y is profile factor, count is ordinal number of planet others are self explanatory, tend is the end of pebble flux
 	
-	if f >= tend or count == 21 or next_orbit >= iceline: #No migration outwards to iceline after iceline crossing and at most 20 planets in system
+	if f >= tend or count == 21 or next_orbit >= iceline+0.02: #No migration outwards to iceline width after iceline crossing and at most 20 planets in system
 		return
 	
 	count = count
@@ -180,10 +180,10 @@ def buildplanet(f, o, m_dot_2D_coeff, m_dot_3D_coeff, y, a_dot_coeff, next_orbit
 	file1.write(str(m1)+','+str(b[-1])+','+str(Mp[-1])+','+str(0.1*Mp[-1])+','+str(count)+','+str(m_star)+','+str(m_disk)+'\n')
 
 	plt.scatter(b[-1],Mp[-1],color = 'blue')
-	#plt.plot(b,Mp, linewidth = 0.5, label = str(count))
+	#plt.plot(b,Mp, linewidth = 0.5, label = str(count), zorder = 1)
 	#plt.plot(np.divide(a,1e6),Mp, linewidth = 0.5, label = str(count))
 	#plt.plot(np.divide(a,1e6),b, linewidth = 0.5, label = str(count))
-	#plt.scatter(b[-1],Mp[-1], s = 3.)
+	#plt.scatter(b[-1],Mp[-1], s = 5., zorder = 2)
 	#plt.scatter(a[-1]/1e6,Mp[-1], s = 3.)
 	#plt.scatter(a[-1]/1e6,b[-1], s = 3.)
 	plt.xscale('log')
@@ -194,12 +194,13 @@ def buildplanet(f, o, m_dot_2D_coeff, m_dot_3D_coeff, y, a_dot_coeff, next_orbit
 	#plt.ylim(0.01, 0.2)
 	#plt.xlim(9e-2, 1.2)
 	plt.title('Distribution of planets', size = 22)
-	#plt.title('Evolution of planets', size = 12)
-	#plt.title('Semi major axis Evolution of planets ($c_{mig}=0.1$)', size = 8)
+	#plt.title('Evolution of planets ($c_{mig}=1$)', size = 8)
+	#plt.title('Semi major axis Evolution of planets ($c_{mig}=1$)', size = 8)
 	plt.xlabel('Semi-major axis in AU', size = 16)
 	plt.ylabel('Mass of planet in $M_{\oplus}$', size = 16)
 	#plt.ylabel('Semi-major axis in AU', size = 8)
 	#plt.ylabel('Mass of planet in $M_{\oplus}$', size = 8)
+	#plt.xlabel('Semi-major axis in AU', size = 8)
 	#plt.xlabel('Time in million years', size = 8)
 	
 	plt.tick_params(labelsize=14)
